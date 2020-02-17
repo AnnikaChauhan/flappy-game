@@ -1,3 +1,128 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
 
+body {
+  font-family: 'Courier New', Courier, monospace;
+  height: 100vh;
+  font-size: 15px;
+  background-color: seashell;
+}
 
+h1 {
+  text-align: center;
+  font-size: 4em;
+  background-color: grey;
+  color: white;
+}
+
+section {
+  border: 2px solid black;
+  height: 500px;
+  width: 750px;
+  margin: 30px auto;
+  background-color: skyblue;
+  position: relative;
+  overflow: hidden;
+}
+
+#dragon {
+  font-size: 100px;
+  color: gold;
+  position: absolute;
+  top: 200px;
+  left: 300px;
+  -webkit-animation: bounce 1s infinite linear;
+  animation: bounce 1s infinite linear;
+}
+
+@-webkit-keyframes bounce {
+  0% {
+    top: 150;
+  }
+  25% {
+    top: 155;
+  }
+  50% {
+    top: 160;
+  }
+  75% {
+    top: 165;
+  }
+  100% {
+    top: 150;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    top: 150;
+  }
+  25% {
+    top: 155;
+  }
+  50% {
+    top: 160;
+  }
+  75% {
+    top: 165;
+  }
+  100% {
+    top: 150;
+  }
+}
+
+.movingFloor {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  -webkit-animation: slide-left 20s;
+          animation: slide-left 20s;
+}
+
+@-webkit-keyframes slide-left {
+  from {
+    margin-left: 100%;
+    width: 100%;
+  }
+  to {
+    margin-left: -100%;
+    width: 100%;
+  }
+}
+
+@keyframes slide-left {
+  from {
+    margin-left: 100%;
+    width: 100%;
+  }
+  to {
+    margin-left: -100%;
+    width: 100%;
+  }
+}
+
+.movingFloor .tree {
+  font-size: 3.5em;
+  width: 93.75px;
+}
+
+.movingFloor .tree:nth-child(odd) {
+  color: green;
+}
+
+.movingFloor .tree:nth-child(even) {
+  color: darkgreen;
+}
+
+footer {
+  font-weight: bold;
+  text-align: center;
+}
 /*# sourceMappingURL=main.css.map */

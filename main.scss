@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    height: 100vh;
+    font-size: 15px;
+    background-color: seashell;
+}
+
+h1 {
+    text-align: center;
+    font-size: 4em;
+    background-color: grey;
+    color: white;
+}
+
+section {
+    border: 2px solid black;
+    height: 500px;
+    width: 750px;
+    margin: 30px auto;
+    background-color: skyblue;
+    position: relative;
+    overflow: hidden;
+}
+
+#dragon {
+    font-size: 100px;
+    color: gold;
+    position: absolute;
+    top: 200px;
+    left: 300px;
+
+    -moz-animation: bounce 1s infinite linear;
+    -o-animation: bounce 1s infinite linear;
+    -webkit-animation: bounce 1s infinite linear;
+    animation: bounce 1s infinite linear;
+
+    @keyframes bounce {
+        0% { top: 150;}
+        25% { top: 155;}
+        50% { top: 160;}
+        75% { top: 165;}
+        100% { top: 150;}
+    }
+}
+
+.movingFloor {
+    display: flex;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    animation: slide-left 20s;
+
+    @keyframes slide-left {
+        from {
+            margin-left: 100%;
+            width: 100%; 
+        }
+
+        to {
+            margin-left: -100%;
+            width: 100%;
+        }
+    }
+
+    // -moz-animation: treemove 20s infinite linear;
+    // -o-animation: treemove 20s infinite linear;
+    // -webkit-animation: treemove 20s infinite linear;
+    // animation: treemove 20s infinite linear;
+
+    // @keyframes treemove {
+    //     0% {right: 0;}
+    //     25% {right: 50;}
+    //     50% {right: 75;}
+    //     75% {right: 100;}
+    //     100% {right: 125;}
+    // }
+
+    .tree {
+        font-size: 3.5em;
+        width: (750px / 8);
+
+        &:nth-child(odd){
+            color: green;
+        }
+
+        &:nth-child(even){
+            color: darkgreen;
+        }
+    }
+}
+
+
+footer {
+    font-weight: bold;
+    text-align: center;
+}
+

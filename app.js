@@ -1,0 +1,6 @@
+const gameStartUp = () => {
+    
+
+}
+
+$(gameStartUp);
