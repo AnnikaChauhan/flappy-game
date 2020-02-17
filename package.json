@@ -1,0 +1,10 @@
+{
+  "name": "game-one",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/AnnikaChauhan/game-one.git",
+  "license": "MIT",
+  "dependencies": {
+    "sass": "^1.25.0"
+  }
+}
