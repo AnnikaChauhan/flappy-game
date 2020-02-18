@@ -33,45 +33,31 @@ section {
   font-size: 100px;
   color: gold;
   position: absolute;
-  top: 200px;
+  top: 100px;
   left: 300px;
   -webkit-animation: bounce 1s infinite linear;
-  animation: bounce 1s infinite linear;
+  animation: bounce 1s infinite;
 }
 
 @-webkit-keyframes bounce {
-  0% {
-    top: 150;
+  from {
+    -webkit-transform: translateY(60%);
+            transform: translateY(60%);
   }
-  25% {
-    top: 155;
-  }
-  50% {
-    top: 160;
-  }
-  75% {
-    top: 165;
-  }
-  100% {
-    top: 150;
+  to {
+    -webkit-transform: translateY(80%);
+            transform: translateY(80%);
   }
 }
 
 @keyframes bounce {
-  0% {
-    top: 150;
+  from {
+    -webkit-transform: translateY(60%);
+            transform: translateY(60%);
   }
-  25% {
-    top: 155;
-  }
-  50% {
-    top: 160;
-  }
-  75% {
-    top: 165;
-  }
-  100% {
-    top: 150;
+  to {
+    -webkit-transform: translateY(80%);
+            transform: translateY(80%);
   }
 }
 
@@ -82,29 +68,43 @@ section {
   width: 100%;
   position: absolute;
   bottom: 0;
-  -webkit-animation: slide-left 20s;
-          animation: slide-left 20s;
+  -webkit-animation: treemove 20s infinite;
+  animation: treemove 5s infinite linear;
 }
 
-@-webkit-keyframes slide-left {
-  from {
-    margin-left: 100%;
-    width: 100%;
+@-webkit-keyframes treemove {
+  0% {
+    right: 0;
   }
-  to {
-    margin-left: -100%;
-    width: 100%;
+  25% {
+    right: 50;
+  }
+  50% {
+    right: 75;
+  }
+  75% {
+    right: 100;
+  }
+  100% {
+    right: 125;
   }
 }
 
-@keyframes slide-left {
-  from {
-    margin-left: 100%;
-    width: 100%;
+@keyframes treemove {
+  0% {
+    right: 0;
   }
-  to {
-    margin-left: -100%;
-    width: 100%;
+  25% {
+    right: 50;
+  }
+  50% {
+    right: 75;
+  }
+  75% {
+    right: 100;
+  }
+  100% {
+    right: 125;
   }
 }
 
