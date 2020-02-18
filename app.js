@@ -10,3 +10,5 @@ const gameStartUp = () => {
 }
 
 $(gameStartUp);
+
+//make the on click part of a loop, basically the entire game should sit within a loop including the if for a collision
