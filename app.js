@@ -1,19 +1,20 @@
 const gameStartUp = () => {
     const dragon = document.getElementById("dragon");
     let dragonTop = 200;
-
+    let dragonHeight = 70;
     let obstacleRightStart = 0;
     let obstacleHeight;
     let obstacleTop;
+    let obstacleWidth = 150;
 
+    // put this back when it's working
     const determineObstacleHeight = () => {
         let randomOBHnumber = Math.floor(Math.random() * 9);
         let randomOBheight = randomOBHnumber * 50;
         return randomOBheight;
     }
 
-    //these are wrong
-    obstacleHeight = 200;
+    obstacleHeight = determineObstacleHeight();
     obstacleTop = 500 - obstacleHeight;
     
     // don't do this yet
@@ -32,36 +33,49 @@ const gameStartUp = () => {
         return `rgb(${randomCOnumberR},${randomCOnumberG},${randomCOnumberB})`;
     }
 
-    // this creates multiple obstacles
-    const addObstacles = () => {
-        //for looop!!!!!
-        //setInterval(addObstacle,1000);
+    const horizontalCollision = (obstacleHPosition) => {
+        if(obstacleHPosition > 252 && obstacleHPosition < (252 + obstacleWidth)) {
+            console.log('end2');
+        }
     }
 
+    const moveObstacle = (box) => {
+        setInterval(() => {
+            if(obstacleRightStart < 700){
+                obstacleRightStart += 10;
+                box.style.right = obstacleRightStart;
+                //console.log(obstacleRightStart);
+                // this understands when theres an interaction
+                horizontalCollision(obstacleRightStart);
+            }
+        }, 100);
+    }
 
     const addObstacle = () => {
-        //foor loop!!!!
             let obstacle = document.createElement("div");
             obstacle.classList.add("obstacle");
             document.querySelector('section').appendChild(obstacle);
             obstacle.style.backgroundColor = determineObstacleColour();
+            obstacle.style.width = obstacleWidth;
             //obstacle.style.width = determineObstacleWidth();
-            //obstacle.style.height = `${determineObstacleHeight()}px`;
-            obstacle.style.height = 200;
-            setInterval(() => {
-                if(obstacleRightStart < 700){
-                    obstacleRightStart += 10;
-                    obstacle.style.right = obstacleRightStart;
-                    //console.log(obstacleRightStart);
-                }
-            }, 100);
+            obstacle.style.height = `${obstacleHeight}px`;
+            moveObstacle(obstacle);
+            console.log(obstacle.getBoundingClientRect());
     }
 
-    const collisionDetection = (dragonPosition,obstaclePosition) => {
-        if(dragonPosition >= obstaclePosition){
+    //addObstacle();
+
+    const addObstacles = () => {
+        setInterval(addObstacle,1000);
+    }
+
+   // addObstacles();
+
+    const collisionDetection = (dragonVPosition,obstacleVPosition) => {
+        if(dragonVPosition > obstacleVPosition || dragonVPosition === obstacleVPosition){
+            //this understands when there is an "interaction"
             console.log('end');
         }
-        // this will track if the cordinates of the dragon and the cordinates of the obstacle are the same and stop the game if they are
     }
 
     
@@ -74,14 +88,17 @@ const gameStartUp = () => {
             if (dragonTop < 480) {
                 dragonTop +=5 ;
                 dragon.style.top = dragonTop;
-                console.log(dragonTop);
+                let dragonBottom = dragonTop + dragonHeight;
+                //console.log(dragonTop);
+                //console.log(dragonBottom);
                 //console.log(obstacleHeight);
-                console.log(obstacleTop);
-                collisionDetection(dragonTop,obstacleTop);
+                //console.log(obstacleTop);
+                collisionDetection(dragonBottom,obstacleTop);
+                console.log(dragon.getBoundingClientRect());
 
                 //win conditions need to be here as this most accurately captures the dragons position
             } 
-        }, 100);
+        }, 200);
     }
 
     const resetGame = () => {
