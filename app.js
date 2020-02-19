@@ -59,8 +59,7 @@ const gameStartUp = () => {
 
     const collisionDetection = (dragonPosition,obstaclePosition) => {
         if(dragonPosition >= obstaclePosition){
-            return true;
-            //console.log('end');
+            console.log('end');
         }
         // this will track if the cordinates of the dragon and the cordinates of the obstacle are the same and stop the game if they are
     }
@@ -76,9 +75,9 @@ const gameStartUp = () => {
                 dragonTop +=5 ;
                 dragon.style.top = dragonTop;
                 console.log(dragonTop);
-                console.log(obstacleHeight);
-                //console.log(obstacleTop);
-                collisionDetection(dragonTop,obstacleHeight);
+                //console.log(obstacleHeight);
+                console.log(obstacleTop);
+                collisionDetection(dragonTop,obstacleTop);
 
                 //win conditions need to be here as this most accurately captures the dragons position
             } 
