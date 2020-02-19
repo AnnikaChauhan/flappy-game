@@ -2,14 +2,17 @@ const gameStartUp = () => {
     const dragon = document.getElementById("dragon");
     let dragonTop = 200;
     let obstacleRightStart = 0;
+    let dragonTopPosition = 0;
 
     const fallingDragon = () => {
-        const myInterval = setInterval(() => {
+        setInterval(() => {
             if (dragonTop < 480) {
                 dragonTop +=5 ;
                 dragon.style.top = dragonTop;
                 //console.log(dragonTop);
             } 
+            dragonTopPosition = 0 + dragonTop;
+            console.log(dragonTopPosition);
         }, 100);
     }
 
@@ -33,13 +36,9 @@ const gameStartUp = () => {
                 if(obstacleRightStart < 700){
                     obstacleRightStart += 10;
                     obstacle.style.right = obstacleRightStart;
-                    console.log(obstacleRightStart);
+                    //console.log(obstacleRightStart);
                 }
             }, 100);
-    }
-
-    const dragonTracker = () => {
-        //this will track the height of the dragon
     }
 
     const collisionDetection = () => {
