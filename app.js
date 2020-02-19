@@ -5,6 +5,7 @@ const gameStartUp = () => {
     let obstacleRightStart = 0;
     let obstacleHeight;
     let obstacleTop;
+    let obstacleWidth = 150;
 
     // put this back when it's working
     const determineObstacleHeight = () => {
@@ -32,6 +33,12 @@ const gameStartUp = () => {
         return `rgb(${randomCOnumberR},${randomCOnumberG},${randomCOnumberB})`;
     }
 
+    const horizontalCollision = (obstacleHPosition) => {
+        if(obstacleHPosition > 252 && obstacleHPosition < (252 + obstacleWidth)) {
+            console.log('end2');
+        }
+    }
+
     const moveObstacle = (box) => {
         setInterval(() => {
             if(obstacleRightStart < 700){
@@ -39,9 +46,7 @@ const gameStartUp = () => {
                 box.style.right = obstacleRightStart;
                 //console.log(obstacleRightStart);
                 // this understands when theres an interaction
-                if(obstacleRightStart > 252 && obstacleRightStart < 473) {
-                    console.log('end2');
-                }
+                horizontalCollision(obstacleRightStart);
             }
         }, 100);
     }
@@ -51,11 +56,11 @@ const gameStartUp = () => {
             obstacle.classList.add("obstacle");
             document.querySelector('section').appendChild(obstacle);
             obstacle.style.backgroundColor = determineObstacleColour();
-            //obstacle.style.right = 252;
-            //obstacle.style.right = 473;
+            obstacle.style.width = obstacleWidth;
             //obstacle.style.width = determineObstacleWidth();
             obstacle.style.height = `${obstacleHeight}px`;
             moveObstacle(obstacle);
+            console.log(obstacle.getBoundingClientRect());
     }
 
     //addObstacle();
@@ -66,12 +71,11 @@ const gameStartUp = () => {
 
    // addObstacles();
 
-    const collisionDetection = (dragonHPosition,obstacleHPosition) => {
-        if(dragonHPosition > obstacleHPosition || dragonHPosition === obstacleHPosition){
+    const collisionDetection = (dragonVPosition,obstacleVPosition) => {
+        if(dragonVPosition > obstacleVPosition || dragonVPosition === obstacleVPosition){
             //this understands when there is an "interaction"
             console.log('end');
         }
-        // this will track if the cordinates of the dragon and the cordinates of the obstacle are the same and stop the game if they are
     }
 
     
@@ -90,6 +94,7 @@ const gameStartUp = () => {
                 //console.log(obstacleHeight);
                 //console.log(obstacleTop);
                 collisionDetection(dragonBottom,obstacleTop);
+                console.log(dragon.getBoundingClientRect());
 
                 //win conditions need to be here as this most accurately captures the dragons position
             } 
