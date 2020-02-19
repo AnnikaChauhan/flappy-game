@@ -36,6 +36,7 @@ section {
   left: 300px;
   top: 200px;
   border: 2px solid red;
+  z-index: 1;
 }
 
 #dragon .fa-dragon {
