@@ -1,35 +1,51 @@
 const gameStartUp = () => {
     const ball = document.getElementById("ball");
     let ballTop = 200;
+    let obstacleRightStart = 0;
 
     const fallingBall = () => {
         const myInterval = setInterval(() => {
             if (ballTop < 480) {
-                ballTop +=1 ;
+                ballTop +=5 ;
                 ball.style.top = ballTop;
                 //console.log(ballTop);
             } 
         }, 100);
     }
 
-    const addObstacle = () => {
-        let obstacleRightStart = 0;
-        const obstacle = $('section').append('<div class="obstacle"></div>');
 
-        obstacleRightStart += 2;
+    // this creates multiple obstacles
+    const addObstacles = () => {
+        setInterval(addObstacle,1000);
     }
 
-    addObstacle();
+
+    const addObstacle = () => {
+            let obstacle = document.createElement("div");
+            obstacle.classList.add("obstacle");
+            document.querySelector('section').appendChild(obstacle);
+            setInterval(() => {
+                if(obstacleRightStart < 700){
+                    obstacleRightStart += 10;
+                    obstacle.style.right = obstacleRightStart;
+                    console.log(obstacleRightStart);
+                }
+            }, 500);
+    }
+
+    const collisionDetection = () => {
+
+    }
 
     //begin the game
     document.onkeypress = () => {
         if(event.which === 13){
             console.log('enter');
             fallingBall();
-            //setTimeout(addObstacle,1000);
+            setTimeout(addObstacles,50);
             //click enter/spacebar to begin the setInterval
             //wait 10 seconds and then begin the obstacles
-        }   
+        }  
     }
 
     // initiate game play with space bars - have collision logic here
@@ -39,6 +55,8 @@ const gameStartUp = () => {
             ball.style.top = ballTop;
         }
     }
+
+
 }
 
 $(gameStartUp);
