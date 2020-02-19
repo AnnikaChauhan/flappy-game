@@ -1,22 +1,26 @@
 const gameStartUp = () => {
-    const ball = document.getElementById("ball");
-    let ballTop = 200;
+    const dragon = document.getElementById("dragon");
+    let dragonTop = 200;
     let obstacleRightStart = 0;
 
-    const fallingBall = () => {
+    const fallingDragon = () => {
         const myInterval = setInterval(() => {
-            if (ballTop < 480) {
-                ballTop +=5 ;
-                ball.style.top = ballTop;
-                //console.log(ballTop);
+            if (dragonTop < 480) {
+                dragonTop +=5 ;
+                dragon.style.top = dragonTop;
+                //console.log(dragonTop);
             } 
         }, 100);
     }
 
+    const determineObstacleHeight = () => {
+        let randomNumber = Math.floor(Math.random() * 400);
+        return randomNumber;
+    }
 
     // this creates multiple obstacles
     const addObstacles = () => {
-        setInterval(addObstacle,1000);
+        //setInterval(addObstacle,1000);
     }
 
 
@@ -24,25 +28,30 @@ const gameStartUp = () => {
             let obstacle = document.createElement("div");
             obstacle.classList.add("obstacle");
             document.querySelector('section').appendChild(obstacle);
+            obstacle.style.height = determineObstacleHeight();
             setInterval(() => {
                 if(obstacleRightStart < 700){
                     obstacleRightStart += 10;
                     obstacle.style.right = obstacleRightStart;
                     console.log(obstacleRightStart);
                 }
-            }, 500);
+            }, 100);
+    }
+
+    const dragonTracker = () => {
+        //this will track the height of the dragon
     }
 
     const collisionDetection = () => {
-
+        // this will track if the cordinates of the dragon and the cordinates of the obstacle are the same and stop the game if they are
     }
 
     //begin the game
     document.onkeypress = () => {
         if(event.which === 13){
             console.log('enter');
-            fallingBall();
-            setTimeout(addObstacles,50);
+            fallingDragon();
+            setTimeout(addObstacle,50);
             //click enter/spacebar to begin the setInterval
             //wait 10 seconds and then begin the obstacles
         }  
@@ -51,8 +60,8 @@ const gameStartUp = () => {
     // initiate game play with space bars - have collision logic here
     document.onkeydown = () => {
         if(event.which === 32) {
-            ballTop -= 40;
-            ball.style.top = ballTop;
+            dragonTop -= 40;
+            dragon.style.top = dragonTop;
         }
     }
 
