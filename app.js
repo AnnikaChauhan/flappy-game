@@ -1,19 +1,19 @@
 const gameStartUp = () => {
     const dragon = document.getElementById("dragon");
     let dragonTop = 200;
-    let dragonHeight = 60;
+    let dragonHeight = 70;
     let obstacleRightStart = 0;
     let obstacleHeight;
     let obstacleTop;
 
+    // put this back when it's working
     const determineObstacleHeight = () => {
         let randomOBHnumber = Math.floor(Math.random() * 9);
         let randomOBheight = randomOBHnumber * 50;
         return randomOBheight;
     }
 
-    //these are wrong
-    obstacleHeight = 200;
+    obstacleHeight = determineObstacleHeight();
     obstacleTop = 500 - obstacleHeight;
     
     // don't do this yet
@@ -32,33 +32,43 @@ const gameStartUp = () => {
         return `rgb(${randomCOnumberR},${randomCOnumberG},${randomCOnumberB})`;
     }
 
-    // this creates multiple obstacles
-    const addObstacles = () => {
-        //for looop!!!!!
-        //setInterval(addObstacle,1000);
+    const moveObstacle = (box) => {
+        setInterval(() => {
+            if(obstacleRightStart < 700){
+                obstacleRightStart += 10;
+                box.style.right = obstacleRightStart;
+                //console.log(obstacleRightStart);
+                // this understands when theres an interaction
+                if(obstacleRightStart > 252 && obstacleRightStart < 473) {
+                    console.log('end2');
+                }
+            }
+        }, 100);
     }
 
-
     const addObstacle = () => {
-        //foor loop!!!!
             let obstacle = document.createElement("div");
             obstacle.classList.add("obstacle");
             document.querySelector('section').appendChild(obstacle);
             obstacle.style.backgroundColor = determineObstacleColour();
+            //obstacle.style.right = 252;
+            //obstacle.style.right = 473;
             //obstacle.style.width = determineObstacleWidth();
-            //obstacle.style.height = `${determineObstacleHeight()}px`;
-            obstacle.style.height = 200;
-            setInterval(() => {
-                if(obstacleRightStart < 700){
-                    obstacleRightStart += 10;
-                    obstacle.style.right = obstacleRightStart;
-                    //console.log(obstacleRightStart);
-                }
-            }, 100);
+            obstacle.style.height = `${obstacleHeight}px`;
+            moveObstacle(obstacle);
     }
 
-    const collisionDetection = (dragonPosition,obstaclePosition) => {
-        if(dragonPosition > obstaclePosition || dragonPosition === obstaclePosition){
+    //addObstacle();
+
+    const addObstacles = () => {
+        setInterval(addObstacle,1000);
+    }
+
+   // addObstacles();
+
+    const collisionDetection = (dragonHPosition,obstacleHPosition) => {
+        if(dragonHPosition > obstacleHPosition || dragonHPosition === obstacleHPosition){
+            //this understands when there is an "interaction"
             console.log('end');
         }
         // this will track if the cordinates of the dragon and the cordinates of the obstacle are the same and stop the game if they are
@@ -75,8 +85,8 @@ const gameStartUp = () => {
                 dragonTop +=5 ;
                 dragon.style.top = dragonTop;
                 let dragonBottom = dragonTop + dragonHeight;
-                console.log(dragonTop);
-                console.log(dragonBottom);
+                //console.log(dragonTop);
+                //console.log(dragonBottom);
                 //console.log(obstacleHeight);
                 //console.log(obstacleTop);
                 collisionDetection(dragonBottom,obstacleTop);
