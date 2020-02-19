@@ -1,7 +1,7 @@
 const gameStartUp = () => {
     const dragon = document.getElementById("dragon");
     let dragonTop = 200;
-
+    let dragonHeight = 60;
     let obstacleRightStart = 0;
     let obstacleHeight;
     let obstacleTop;
@@ -58,7 +58,7 @@ const gameStartUp = () => {
     }
 
     const collisionDetection = (dragonPosition,obstaclePosition) => {
-        if(dragonPosition >= obstaclePosition){
+        if(dragonPosition > obstaclePosition || dragonPosition === obstaclePosition){
             console.log('end');
         }
         // this will track if the cordinates of the dragon and the cordinates of the obstacle are the same and stop the game if they are
@@ -74,14 +74,16 @@ const gameStartUp = () => {
             if (dragonTop < 480) {
                 dragonTop +=5 ;
                 dragon.style.top = dragonTop;
+                let dragonBottom = dragonTop + dragonHeight;
                 console.log(dragonTop);
+                console.log(dragonBottom);
                 //console.log(obstacleHeight);
-                console.log(obstacleTop);
-                collisionDetection(dragonTop,obstacleTop);
+                //console.log(obstacleTop);
+                collisionDetection(dragonBottom,obstacleTop);
 
                 //win conditions need to be here as this most accurately captures the dragons position
             } 
-        }, 100);
+        }, 200);
     }
 
     const resetGame = () => {
