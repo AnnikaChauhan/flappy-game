@@ -29,16 +29,16 @@ section {
   overflow: hidden;
 }
 
-#ball {
+#dragon {
   position: absolute;
-  height: 75px;
+  height: 60px;
   width: 75px;
-  left: 200px;
+  left: 300px;
   top: 200px;
-  border: 1px solid red;
+  border: 2px solid red;
 }
 
-#ball .fa-dragon {
+#dragon .fa-dragon {
   font-size: 4em;
   color: black;
 }
@@ -47,9 +47,8 @@ section {
   position: absolute;
   bottom: 0;
   right: 0;
-  height: 200px;
-  width: 100px;
-  background-color: brown;
+  width: 150px;
+  border: 2px solid black;
 }
 
 .movingFloor {
