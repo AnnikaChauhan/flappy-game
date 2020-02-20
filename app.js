@@ -47,20 +47,23 @@ const gameStartUp = () => {
                 //console.log(obstacleRightStart);
                 // this understands when theres an interaction
                 horizontalCollision(obstacleRightStart);
+                console.log(obstacleRightStart);
+                //run the check inside here
             }
         }, 100);
     }
 
+    
+
     const addObstacle = () => {
-            let obstacle = document.createElement("div");
-            obstacle.classList.add("obstacle");
-            document.querySelector('section').appendChild(obstacle);
-            obstacle.style.backgroundColor = determineObstacleColour();
-            obstacle.style.width = obstacleWidth;
-            //obstacle.style.width = determineObstacleWidth();
-            obstacle.style.height = `${obstacleHeight}px`;
-            moveObstacle(obstacle);
-            console.log(obstacle.getBoundingClientRect());
+        let obstacle = document.createElement("div");
+        obstacle.classList.add("obstacle");
+        document.querySelector('section').appendChild(obstacle);
+        obstacle.style.backgroundColor = determineObstacleColour();
+        obstacle.style.width = obstacleWidth;
+        //obstacle.style.width = determineObstacleWidth();
+        obstacle.style.height = `${obstacleHeight}px`;
+        moveObstacle(obstacle);
     }
 
     //addObstacle();
@@ -89,15 +92,32 @@ const gameStartUp = () => {
                 dragonTop +=5 ;
                 dragon.style.top = dragonTop;
                 let dragonBottom = dragonTop + dragonHeight;
-                //console.log(dragonTop);
-                //console.log(dragonBottom);
-                //console.log(obstacleHeight);
-                //console.log(obstacleTop);
                 collisionDetection(dragonBottom,obstacleTop);
-                console.log(dragon.getBoundingClientRect());
+                //console.log(dragon.getBoundingClientRect());
 
                 //win conditions need to be here as this most accurately captures the dragons position
             } 
+        }, 200);
+    }
+
+    const playGame = () => {
+
+        // SWITCH THESE SWITCH INTERVALS ROUND, PRODUCE THE OBSTACLE AND then an inside set interval dropping the box
+        setInterval(() => {
+            if(dragonTop < 480){
+                dragonTop += 5;
+                dragon.style.top = dragonTop;
+                let dragonBottom = dragonTop + dragonHeight;
+                collisionDetection(dragonBottom,obstacleTop);
+                let obstacle = document.createElement("div");
+                obstacle.classList.add("obstacle");
+                document.querySelector('section').appendChild(obstacle);
+                obstacle.style.backgroundColor = determineObstacleColour();
+                obstacle.style.width = obstacleWidth;
+                //obstacle.style.width = determineObstacleWidth();
+                obstacle.style.height = `${obstacleHeight}px`;
+                moveObstacle(obstacle);
+            }
         }, 200);
     }
 
@@ -109,14 +129,12 @@ const gameStartUp = () => {
         }
     }
 
-
     //begin the game - enter
     document.onkeypress = () => {
         if(event.which === 13){
-            fallingDragon();
-            setTimeout(addObstacle,50);
-            //click enter/spacebar to begin the setInterval
-            //wait 10 seconds and then begin the obstacles
+            //fallingDragon();
+            //setTimeout(addObstacle,50);
+            playGame();
         }  
     }
 
