@@ -103,6 +103,7 @@ const gameStartUp = () => {
     const playGame = () => {
 
         // SWITCH THESE SWITCH INTERVALS ROUND, PRODUCE THE OBSTACLE AND then an inside set interval dropping the box
+        // or you want to control the move by of the obstacles and dragon all in the same space - try readjusting code to get it this way and then in the onload it loads the single obstacle
         setInterval(() => {
             if(dragonTop < 480){
                 dragonTop += 5;
