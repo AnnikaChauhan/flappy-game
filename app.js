@@ -51,7 +51,7 @@ const gameStartUp = () => {
         setInterval(addObstacle, 1000);
     }
 
-    //this loops!!!!
+    //this loops!!!! 
     const delayedLoop = (counter) => {
         if(counter < 10){
             setTimeout(() => {
