@@ -33,6 +33,9 @@ const gameStartUp = () => {
         if (obstacleRight < 700) {
             obstacleRight += 10;
             box.style.right = obstacleRight;
+        } else {
+            restart.style.display = "flex";
+            restart.style.justifyContent = "center";
         }
     }
 
@@ -53,6 +56,10 @@ const gameStartUp = () => {
 
     const scoreCounter = () => {
         //this will basically count the seconds you play for and increment up one for each second played
+    }
+
+    restart.onclick = () => {
+        location.reload();
     }
 
     const playGame = () => {
