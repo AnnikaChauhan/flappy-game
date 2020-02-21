@@ -19,11 +19,15 @@ h1 {
   color: white;
 }
 
+p {
+  padding: 10px;
+}
+
 .gameContainer {
   border: 2px solid black;
   height: 500;
   width: 750;
-  margin: 20px auto;
+  margin: 10px auto;
   background-color: lightblue;
   position: relative;
   overflow: hidden;
