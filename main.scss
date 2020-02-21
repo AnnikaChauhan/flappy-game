@@ -18,11 +18,11 @@ h1 {
     color: white;
 }
 
-section {
+.gameContainer {
     border: 2px solid black;
     height: 500;
     width: 750;
-    margin: 30px auto;
+    margin: 20px auto;
     background-color: lightblue;
     position: relative;
     overflow: hidden;
@@ -83,6 +83,19 @@ section {
     }
 }
 
+#restart {
+    display: none;
+
+    button {
+        height: 50px;
+        width: 200px;
+        border: 2px solid grey;
+        border-radius: 5px;
+        font-size: 30px;
+        cursor: pointer;
+    }
+}
+   
 
 footer {
     font-weight: bold;
