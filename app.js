@@ -33,10 +33,7 @@ const gameStartUp = () => {
         if (obstacleRight < 700) {
             obstacleRight += 10;
             box.style.right = obstacleRight;
-        } else {
-            restart.style.display = "flex";
-            restart.style.justifyContent = "center";
-        }
+        } 
     }
 
     const addObstacle = (obs) => {
@@ -54,6 +51,19 @@ const gameStartUp = () => {
         setInterval(addObstacle, 1000);
     }
 
+    //this loops!!!!
+    const delayedLoop = (counter) => {
+        if(counter < 10){
+            setTimeout(() => {
+                counter++;
+                console.log(counter);
+                delayedLoop(counter);
+            }, 1000);
+        }
+    }
+
+    //delayedLoop(0);
+
     const scoreCounter = () => {
         //this will basically count the seconds you play for and increment up one for each second played
     }
@@ -62,6 +72,7 @@ const gameStartUp = () => {
         location.reload();
     }
 
+    //makw sure you can only click enter once
     const playGame = () => {
         let obstacle = document.createElement("div");
         addObstacle(obstacle);
@@ -74,8 +85,6 @@ const gameStartUp = () => {
                 const hasLost = isCollision(dragonBottom, obstacleTop, obstacleRight);
                 if (hasLost) {
                     clearInterval(intervals);
-                    restart.style.display = "flex";
-                    restart.style.justifyContent = "center";
                 }
             }
         }, 100);
@@ -93,7 +102,6 @@ const gameStartUp = () => {
         if (event.which === 32) {
             dragonTop -= 40;
             dragon.style.top = dragonTop;
-
         }
     }
 

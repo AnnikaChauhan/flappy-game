@@ -119,16 +119,16 @@ p {
   color: darkgreen;
 }
 
-#restart {
-  display: none;
+section {
+  text-align: center;
 }
 
-#restart button {
-  height: 50px;
-  width: 200px;
-  border: 2px solid grey;
-  border-radius: 5px;
-  font-size: 30px;
+#restart {
+  height: 30px;
+  width: 400px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  border: 1px solid red;
   cursor: pointer;
 }
 
