@@ -78,7 +78,7 @@ const gameStartUp = () => {
                     restart.style.justifyContent = "center";
                 }
             }
-        }, 200);
+        }, 100);
     }
 
     //begin the game - enter
