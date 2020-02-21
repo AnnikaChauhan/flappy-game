@@ -33,27 +33,20 @@ const gameStartUp = () => {
         return `rgb(${randomCOnumberR},${randomCOnumberG},${randomCOnumberB})`;
     }
 
-    const horizontalCollision = (obstacleHPosition) => {
-        if(obstacleHPosition > 252 && obstacleHPosition < (252 + obstacleWidth)) {
-            console.log('end2');
+    const isCollision = (dragonVPosition, obstacleVPosition, obstacleHPosition) => {
+        if(obstacleHPosition > 252 && obstacleHPosition < (252 + obstacleWidth) && (dragonVPosition > obstacleVPosition || dragonVPosition === obstacleVPosition)) {
+            console.log('end');
         }
     }
 
     const moveObstacle = (box) => {
         setInterval(() => {
             if(obstacleRightStart < 700){
-                obstacleRightStart += 10;
+                obstacleRightStart += 1;
                 box.style.right = obstacleRightStart;
-                //console.log(obstacleRightStart);
-                // this understands when theres an interaction
-                horizontalCollision(obstacleRightStart);
-                console.log(obstacleRightStart);
-                //run the check inside here
             }
         }, 100);
     }
-
-    
 
     const addObstacle = () => {
         let obstacle = document.createElement("div");
@@ -66,57 +59,32 @@ const gameStartUp = () => {
         moveObstacle(obstacle);
     }
 
-    //addObstacle();
-
     const addObstacles = () => {
         setInterval(addObstacle,1000);
     }
 
    // addObstacles();
-
-    const collisionDetection = (dragonVPosition,obstacleVPosition) => {
-        if(dragonVPosition > obstacleVPosition || dragonVPosition === obstacleVPosition){
-            //this understands when there is an "interaction"
-            console.log('end');
-        }
-    }
-
-    
     const scoreCounter = () => {
         //this will basically count the seconds you play for and increment up one for each second played
-    }
-
-    const fallingDragon = () => {
-        setInterval(() => {
-            if (dragonTop < 480) {
-                dragonTop +=5 ;
-                dragon.style.top = dragonTop;
-                let dragonBottom = dragonTop + dragonHeight;
-                collisionDetection(dragonBottom,obstacleTop);
-                //console.log(dragon.getBoundingClientRect());
-
-                //win conditions need to be here as this most accurately captures the dragons position
-            } 
-        }, 200);
     }
 
     const playGame = () => {
 
         // SWITCH THESE SWITCH INTERVALS ROUND, PRODUCE THE OBSTACLE AND then an inside set interval dropping the box
         // or you want to control the move by of the obstacles and dragon all in the same space - try readjusting code to get it this way and then in the onload it loads the single obstacle
+        let obstacle = document.createElement("div");
+        obstacle.classList.add("obstacle");
+        document.querySelector('section').appendChild(obstacle);
+        obstacle.style.backgroundColor = determineObstacleColour();
+        obstacle.style.width = obstacleWidth;
+        //obstacle.style.width = determineObstacleWidth();
+        obstacle.style.height = `${obstacleHeight}px`;
         setInterval(() => {
             if(dragonTop < 480){
                 dragonTop += 5;
                 dragon.style.top = dragonTop;
                 let dragonBottom = dragonTop + dragonHeight;
-                collisionDetection(dragonBottom,obstacleTop);
-                let obstacle = document.createElement("div");
-                obstacle.classList.add("obstacle");
-                document.querySelector('section').appendChild(obstacle);
-                obstacle.style.backgroundColor = determineObstacleColour();
-                obstacle.style.width = obstacleWidth;
-                //obstacle.style.width = determineObstacleWidth();
-                obstacle.style.height = `${obstacleHeight}px`;
+                const hasLost = isCollision(dragonBottom, obstacleTop, obstacleRightStart);
                 moveObstacle(obstacle);
             }
         }, 200);
