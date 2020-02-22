@@ -33,7 +33,7 @@ const gameStartUp = () => {
         if (obstacleRight < 700) {
             obstacleRight += 10;
             box.style.right = obstacleRight;
-        } 
+        }
     }
 
     const addObstacle = (obs) => {
@@ -47,22 +47,18 @@ const gameStartUp = () => {
     }
 
     //multiple objects
-    const addObstacles = () => {
-        setInterval(addObstacle, 1000);
-    }
-
-    //this loops!!!! 
-    const delayedLoop = (counter) => {
-        if(counter < 10){
+    const addObstacles = (count) => {
+        if(count < 5){
             setTimeout(() => {
-                counter++;
-                console.log(counter);
-                delayedLoop(counter);
+                count++;
+                let obstacle = document.createElement("div");
+                addObstacle(obstacle);
+                addObstacles(count);
             }, 1000);
         }
     }
 
-    //delayedLoop(0);
+    addObstacles(1);
 
     const scoreCounter = () => {
         //this will basically count the seconds you play for and increment up one for each second played
