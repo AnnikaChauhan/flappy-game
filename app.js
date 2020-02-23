@@ -47,18 +47,18 @@ const gameStartUp = () => {
     }
 
     //multiple objects
-    const addObstacles = (count) => {
-        if(count < 5){
-            setTimeout(() => {
+    const addObstacles = (count,obs) => {
+        setInterval(() => {
+            if(count < 5){
                 count++;
-                let obstacle = document.createElement("div");
-                addObstacle(obstacle);
+                console.log(count);
+                addObstacle(obs);
                 addObstacles(count);
-            }, 1000);
-        }
+            }
+        }, 100);
     }
 
-    addObstacles(1);
+    //addObstacles(0);
 
     const scoreCounter = () => {
         //this will basically count the seconds you play for and increment up one for each second played
@@ -72,6 +72,7 @@ const gameStartUp = () => {
     const playGame = () => {
         let obstacle = document.createElement("div");
         addObstacle(obstacle);
+        //addObstacles(0,obstacle);
         const intervals = setInterval(() => {
             if (dragonTop < 480) {
                 dragonTop += 5;
@@ -100,8 +101,6 @@ const gameStartUp = () => {
             dragon.style.top = dragonTop;
         }
     }
-
-
 }
 
 $(gameStartUp);
