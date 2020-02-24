@@ -8,6 +8,7 @@ const gameStartUp = () => {
     let obstacleTop;
     let obstacleWidth = 150;
 
+    //tranform this into classes
     //making the dragon and obstacle objects would make this entire thing easier
 
     const isCollision = (dragonVPosition, obstacleVPosition, obstacleHPosition) => {
