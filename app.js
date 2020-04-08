@@ -8,6 +8,7 @@ const gameStartUp = () => {
     let obstacleTop;
     let obstacleWidth = 150;
 
+    //tranform this into classes
     //making the dragon and obstacle objects would make this entire thing easier
 
     const isCollision = (dragonVPosition, obstacleVPosition, obstacleHPosition) => {
@@ -33,7 +34,7 @@ const gameStartUp = () => {
         if (obstacleRight < 700) {
             obstacleRight += 10;
             box.style.right = obstacleRight;
-        } 
+        }
     }
 
     const addObstacle = (obs) => {
@@ -47,22 +48,18 @@ const gameStartUp = () => {
     }
 
     //multiple objects
-    const addObstacles = () => {
-        setInterval(addObstacle, 1000);
+    const addObstacles = (count,obs) => {
+        setInterval(() => {
+            if(count < 5){
+                count++;
+                console.log(count);
+                addObstacle(obs);
+                addObstacles(count);
+            }
+        }, 100);
     }
 
-    //this loops!!!!
-    const delayedLoop = (counter) => {
-        if(counter < 10){
-            setTimeout(() => {
-                counter++;
-                console.log(counter);
-                delayedLoop(counter);
-            }, 1000);
-        }
-    }
-
-    //delayedLoop(0);
+    //addObstacles(0);
 
     const scoreCounter = () => {
         //this will basically count the seconds you play for and increment up one for each second played
@@ -76,6 +73,7 @@ const gameStartUp = () => {
     const playGame = () => {
         let obstacle = document.createElement("div");
         addObstacle(obstacle);
+        //addObstacles(0,obstacle);
         const intervals = setInterval(() => {
             if (dragonTop < 480) {
                 dragonTop += 5;
@@ -104,8 +102,6 @@ const gameStartUp = () => {
             dragon.style.top = dragonTop;
         }
     }
-
-
 }
 
 $(gameStartUp);
